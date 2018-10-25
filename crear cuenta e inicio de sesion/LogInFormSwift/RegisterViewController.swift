@@ -42,19 +42,21 @@ class RegisterViewController: UIViewController {
             dontfield.alpha = 0
             registeredUsers = defaults.array(forKey: "usernames") as! [String]
             passwordArr = defaults.array(forKey: "passwords") as! [String]
+        }
+        else{
+            if (newPswField.text! != repeatnewPswField.text!  ) {
+                dontmatch.alpha = 1
+            }
+            if( (newUsernameField.text == "") && (newPswField.text == "")){
+                dontfield.alpha = 1
+            }}
             registeredUsers.insert(newUsernameField.text!, at: registeredUsers.count)
             passwordArr.insert(newPswField.text!, at: passwordArr.count)
             defaults.set(registeredUsers, forKey: "usernames")
             defaults.set(passwordArr, forKey: "passwords")
             dismiss(animated: true, completion: nil)
         }
-        else{
-              if (newPswField.text! == repeatnewPswField.text!  ) {
-            dontmatch.alpha = 1
-            }
-            if( (newUsernameField.text != "") && (newPswField.text != "")){
-            dontfield.alpha = 1
-            }    }}
+
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
